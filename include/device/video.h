@@ -21,5 +21,17 @@ draw_pixel(int x, int y, int color) {
 void prepare_buffer(void);
 void display_buffer(void);
 
+void draw_picture(unsigned char*s, int w, int h, int des_off);
+
 void draw_string(const char*, int, int, int);
+
+bool isWhite(int x, int y);
+
+// pixels of picture
+#define HEAD_H 30
+#define HEAD_W 35
+#define MAZE_H 1024
+#define MAZE_W 1024
+
+
 #endif

@@ -7,7 +7,7 @@
 #define CHARACTER_PER_SECOND 5
 #define UPDATE_PER_SECOND 100
 
-volatile int tick = 0;
+static volatile int tick = 0;
 
 void
 timer_event(void) {
@@ -63,11 +63,11 @@ main_loop(void) {
 		/* 依次模拟已经错过的时钟中断。一次主循环如果执行时间长，期间可能到来多次时钟中断，
 		 * 从而主循环中维护的时钟可能与实际时钟相差较多。为了维持游戏的正常运行，必须补上
 		 * 期间错过的每一帧游戏逻辑。 */
-		while (now < target) { 
+		while (now < target) {
 			/* 每隔一定时间产生一个新的字符 */
 			if (now % (HZ / CHARACTER_PER_SECOND) == 0) {
 				create_new_letter();
-			} 
+			}
 			/* 每隔一定时间更新屏幕上字符的位置 */
 			if (now % (HZ / UPDATE_PER_SECOND) == 0) {
 				update_letter_pos();

@@ -4,7 +4,7 @@
 #define TRAP_GATE_32        0xF
 
 /* IDT表的内容 */
-struct GateDescriptor idt[NR_IRQ];
+struct GateDescriptor idt[NR_IRQ]; // NR_IRQ = 256
 
 /* 初始化一个中断门(interrupt gate) */
 static void
@@ -34,6 +34,8 @@ set_trap(struct GateDescriptor *ptr, uint32_t selector, uint32_t offset, uint32_
 
 /* 这些函数是汇编代码 */
 void irq0();
+void irq1();
+
 void vec0();
 void vec1();
 void vec2();
@@ -76,6 +78,7 @@ void init_idt() {
 
 	/* 设置外部中断的处理 */
 	set_intr(idt + 32, SEG_KERNEL_CODE, (uint32_t)irq0, DPL_KERNEL);
+    set_intr(idt + 33, SEG_KERNEL_CODE, (uint32_t)irq1, DPL_KERNEL);
 
 	/* 写入IDT */
 	save_idt(idt, sizeof(idt));

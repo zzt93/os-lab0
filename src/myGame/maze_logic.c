@@ -29,7 +29,7 @@ update_you() {
 	disable_interrupt();
     unsigned int i;
     for (i = 0; i < arrow_size(); ++i) {
-        if (query_key(i) && can_move(i)) {
+        if (query_key2(i) && can_move(i)) {
             return TRUE;
         }
     }

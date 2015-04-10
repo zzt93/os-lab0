@@ -2,6 +2,11 @@
 #include "string.h"
 #include "device/video.h"
 #include "device/font.h"
+#include "device/palette.h"
+
+#include "myGame/scr.h"
+#include "myGame/end_bmp"
+
 
 /* 绘制屏幕的帧缓冲实现。
  * 在某些版本的qemu-kvm上，由于每次访问显存映射区域都会产生一次VM exit，
@@ -30,8 +35,9 @@ prepare_buffer(void) {
 #ifdef PARTIAL_UPDATE
 	memcpy(vref, vbuf, SCR_SIZE);
 #endif
-	vmem = vbuf;
-	memset(vmem, 0, SCR_SIZE);
+	vmem = vbuf;//in order make draw_string write to buffer
+	//memset(vbuf, 0, SCR_SIZE);// this line make it all blank
+    draw_picture(end_bmp + to_start(), MAZE_W, MAZE_H, 0);
 }
 
 void
@@ -68,8 +74,8 @@ draw_character(char ch, int x, int y, int color) {
 	int i, j;
 	assert((ch & 0x80) == 0);
 	char *p = font8x8_basic[(int)ch];
-	for (i = 0; i < 8; i ++) 
-		for (j = 0; j < 8; j ++) 
+	for (i = 0; i < 8; i ++)
+		for (j = 0; j < 8; j ++)
 			if ((p[i] >> j) & 1)
 				draw_pixel(x + i, y + j, color);
 }
@@ -86,3 +92,22 @@ draw_string(const char *str, int x, int y, int color) {
 	}
 }
 
+void draw_picture(unsigned char *s, int w, int h, int des_off) {
+    unsigned int i = 0;
+    unsigned char *buf = vbuf + des_off;
+    h = (h > SCR_HEIGHT) ? SCR_HEIGHT : h;
+    int tmp = (w > SCR_WIDTH) ? SCR_WIDTH : w;
+    for (i = 0; i < h; i++) {
+        memcpy(buf + i*SCR_WIDTH, s + i*w, tmp);
+    }
+}
+
+
+bool isWhite(int x, int y) {
+    int in = end_bmp[x * MAZE_W + y];
+    P color = getColor(in);
+    if (color.r >= 0xd0 && color.g >= 0xd0 && color.b >= 0xd0) {
+        return TRUE;
+    }
+    return FALSE;
+}

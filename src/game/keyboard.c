@@ -2,6 +2,9 @@
 #include "string.h"
 
 /* a-z对应的键盘扫描码 */
+/*
+  当按下一个键的时候, 键盘控制器将会发送该键的通码(make code); 当释放一个键的时候, 键盘控制器将会发送该键的断码(break code), 其中断码的值为通码的值+0x80.
+ */
 static int letter_code[] = {
 	30, 48, 46, 32, 18, 33, 34, 35, 23, 36,
 	37, 38, 50, 49, 24, 25, 16, 19, 31, 20,
@@ -11,7 +14,7 @@ static int letter_code[] = {
 static bool letter_pressed[26];
 
 void
-press_key(int scan_code) {
+static press_key(int scan_code) {
 	int i;
 	for (i = 0; i < 26; i ++) {
 		if (letter_code[i] == scan_code) {

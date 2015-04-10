@@ -35,7 +35,7 @@ irq_handle(struct TrapFrame *tf) {
 		out_byte(0x61, val | 0x80);
 		out_byte(0x61, val);
 
-		printk("%s, %d: key code = %x\n", __FUNCTION__, __LINE__, code);
+		printk("%s, %d: key code = %d\n", __FUNCTION__, __LINE__, code);
 		do_keyboard(code);
 	} else {
 		assert(0);

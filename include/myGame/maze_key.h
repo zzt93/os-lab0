@@ -3,8 +3,8 @@
 
 #include "common.h"
 
-void release_key(int c);
-bool query_key(int c);
+void release_key2(int c);
+bool query_key2(int c);
 unsigned int arrow_size();
 
 
