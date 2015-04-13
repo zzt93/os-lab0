@@ -3,3 +3,6 @@
 *.img
 /game
 boot/bootblock
+.*
+*~
+CMakeLists.txt
