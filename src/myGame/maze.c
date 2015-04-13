@@ -6,15 +6,19 @@
 #define FPS 30
 #define UPDATE_PER_SECOND 100
 
+
 static volatile int tick = 0;
+void maze_timer_event() {
+    tick++;
+}
 
 static int real_fps;
 void
-set_fps2(int value) {
+set_mfps(int value) {
 	real_fps = value;
 }
 int
-get_fps2() {
+get_mfps() {
 	return real_fps;
 }
 
@@ -60,9 +64,13 @@ maze_loop(void) {
 		while (now < target) {
 			/* 每隔一定时间更新屏幕上字符的位置 */
 			if (now % (HZ / UPDATE_PER_SECOND) == 0) {
-				update_timer();
                 update_monster();
 			}
+            // update timer every second
+            if ((now % HZ) == 0) {
+                update_timer();
+            }
+
 			/* 每隔一定时间需要刷新屏幕。注意到这里实现了“跳帧”的机制：假设
 			 *   HZ = 1000, FPS = 100, now = 10, target = 1000
 			 * 即我们要模拟990个时钟中断之间发生的事件，其中包含了9次屏幕更新，
@@ -74,7 +82,7 @@ maze_loop(void) {
 			if (now % (HZ / 2) == 0) {
 				int now_fps = num_draw * 2 + 1;
 				if (now_fps > FPS) now_fps = FPS;
-				set_fps(now_fps);
+				set_mfps(now_fps);
 				num_draw = 0;
 			}
 			now ++;

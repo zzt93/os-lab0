@@ -25,7 +25,7 @@ void draw_picture(unsigned char*s, int w, int h, int des_off);
 
 void draw_string(const char*, int, int, int);
 
-bool isWhite(int x, int y);
+bool isWhite(int x);
 
 // pixels of picture
 #define HEAD_H 30

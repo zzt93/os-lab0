@@ -103,8 +103,8 @@ void draw_picture(unsigned char *s, int w, int h, int des_off) {
 }
 
 
-bool isWhite(int x, int y) {
-    int in = end_bmp[x * MAZE_W + y];
+bool isWhite(int i) {
+    int in = end_bmp[i];
     P color = getColor(in);
     if (color.r >= 0xd0 && color.g >= 0xd0 && color.b >= 0xd0) {
         return TRUE;

@@ -16,7 +16,7 @@ unsigned int arrow_size() {
     return SIZE;
 }
 void
-press_key2(int scan_code) {
+press_dir(int scan_code) {
 	int i;
 	for (i = 0; i < SIZE; i ++) {
 		if (arrow_code[i] == scan_code) {
@@ -26,13 +26,14 @@ press_key2(int scan_code) {
 }
 
 void
-release_key2(int index) {
+release_dir(int index) {
+    //printk("size %d\n", SIZE);
 	assert(0 <= index && index < SIZE);
 	arrow_pressed[index] = FALSE;
 }
 
 bool
-query_key2(int index) {
+query_dir(int index) {
 	assert(0 <= index && index < SIZE);
 	return arrow_pressed[index];
 }
@@ -40,14 +41,14 @@ query_key2(int index) {
 /* key_code保存了上一次键盘事件中的扫描码 */
 static volatile int key_code = 0;
 
-int last_key_code2(void) {
+int last_dir_key(void) {
 	return key_code;
 }
 
 void
-keyboard_event2(int code) {
+maze_key_event(int code) {
 	key_code = code;
-	press_key2(code);
+	press_dir(code);
 }
 
 #undef SIZE

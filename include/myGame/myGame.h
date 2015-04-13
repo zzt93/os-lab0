@@ -19,10 +19,11 @@
 void init_serial();
 
 /* 中断时调用的函数 */
-void timer_event(void);
-void keyboard_event(int scan_code);
+void maze_timer_event(void);
+void maze_key_event(int scan_code);
 
 /* 主循环 */
 void maze_loop(void);
+int get_mfps();
 
 #endif /* __MYGAME_H__ */

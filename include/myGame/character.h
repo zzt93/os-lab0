@@ -5,7 +5,7 @@
 
 
 Dir* surrond();
-void update(Dir, int*, int*);
+void update(Dir);
 int getx();
 int gety();
 

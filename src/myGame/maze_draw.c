@@ -23,9 +23,9 @@ redraw_timerMonsterAndYou() {
 	draw_string(hit, 0, SCR_WIDTH - strlen(hit) * 8, 10);
 	miss = itoa(-1);
 	draw_string(miss, SCR_HEIGHT - 8, SCR_WIDTH - strlen(miss) * 8, 12);
-	draw_string(itoa(get_fps()), 0, 0, 14);
-	draw_string("FPS", 0, strlen(itoa(get_fps())) * 8, 14);
     */
+	draw_string(itoa(get_mfps()), 0, 0, 14);
+	draw_string("FPS", 0, strlen(itoa(get_mfps())) * 8, 14);
     // draw the counterdown timer
     draw_string(itoa(get_remaining()), 0, SCR_WIDTH/2, 0x8);
     draw_picture(head_bmp, HEAD_W, HEAD_H, off_to_screen());

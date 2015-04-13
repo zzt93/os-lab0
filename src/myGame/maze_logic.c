@@ -1,12 +1,8 @@
 #include "myGame/maze_key.h"
-#include "myGame/wall.h"
-#include "common.h"
-#include "string.h"
-#include "adt/linklist.h"
-#include "device/video.h"
+#include "myGame/scr.h"
 #include "x86/x86.h"
 
-static int all = 60;//60 second
+static int all = 90;//90 second
 
 void update_timer() {
     // counterdown timer
@@ -29,8 +25,13 @@ update_you() {
 	disable_interrupt();
     unsigned int i;
     for (i = 0; i < arrow_size(); ++i) {
-        if (query_key2(i) && can_move(i)) {
-            return TRUE;
+        if (query_dir(i)) {
+            if (can_move(i)) {
+                release_dir(i);
+                return TRUE;
+            } else {
+                release_dir(i);
+            }
         }
     }
 	enable_interrupt();

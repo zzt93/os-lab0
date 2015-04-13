@@ -14,7 +14,7 @@ int gety() {
 }
 
 Dir* surrond() {
-    static Dir res[4];
+    static Dir res[5];
     int i = 0;
     if (char_x == 0) {
         res[i++] = RIGHT;
@@ -32,22 +32,23 @@ Dir* surrond() {
     } else {
         res[i++] = UP;
     }
+    res[i] = NO;
     return res;
 }
 
 void assume_move(Dir d, int *x, int *y) {
      switch(d) {
         case UP:
-            *y -= 1;
-            break;
-        case DOWN:
-            *y += 1;
-            break;
-        case LEFT:
             *x -= 1;
             break;
-        case RIGHT:
+        case DOWN:
             *x += 1;
+            break;
+        case LEFT:
+            *y -= 1;
+            break;
+        case RIGHT:
+            *y += 1;
             break;
         default:
             assert(0);
@@ -55,15 +56,19 @@ void assume_move(Dir d, int *x, int *y) {
     }
 }
 
-void update(Dir d, int *x, int *y) {
-    assume_move(d, x, y);
+void update(Dir d) {
+    assume_move(d, &char_x, &char_y);
    //update trace
-    trace[*x][*y]++;
+    printk("dir is %d\n", d);
+    trace[char_x][char_y]++;
+    //update screen
+    set_src_x(char_x);
+    set_src_y(char_y);
 }
 
 int off_to_screen() {
-    check(char_x, 1, GRIDS_X-1);
-    check(char_x, 1, GRIDS_Y-1);
+    check(&char_x, 1, GRIDS_X-1);
+    check(&char_y, 1, GRIDS_Y-1);
 
     int x = char_x - (get_src_x() - XLS);
     int y = char_y - (get_src_y() - YLS);
