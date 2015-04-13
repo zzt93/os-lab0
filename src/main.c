@@ -19,6 +19,10 @@ game_init(void) {
 	printk("game start!\n");
     //test_printk2();
 	enable_interrupt();
-	maze_loop();// game.c
-	assert(0); /* main_loop是死循环，永远无法返回这里 */
+    bool again = TRUE;
+    while (again) {
+        maze_loop();
+        again = againOr();
+    }
+	assert(0);
 }

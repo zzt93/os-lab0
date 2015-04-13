@@ -33,3 +33,10 @@ redraw_timerMonsterAndYou() {
 	display_buffer(); /* 绘制缓冲区 */
 }
 
+void draw_end(Result res) {
+    if (res == WIN) {
+        
+    } else {
+        assert (res == LOSE);
+    }
+}

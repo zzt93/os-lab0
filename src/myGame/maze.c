@@ -43,7 +43,8 @@ maze_loop(void) {
 	int num_draw = 0;
 	bool redraw;
 
-	while (TRUE) {
+    Result res = LET;
+    while ( (res = winOrLose()) == LET) {
 		wait_for_interrupt();
 		disable_interrupt();
 		if (now == tick) {
@@ -93,4 +94,6 @@ maze_loop(void) {
 			redraw_timerMonsterAndYou();
 		}
 	}
+    draw_end(res);
+    release_enter();
 }

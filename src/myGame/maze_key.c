@@ -6,11 +6,16 @@
   当按下一个键的时候, 键盘控制器将会发送该键的通码(make code); 当释放一个键的时候, 键盘控制器将会发送该键的断码(break code), 其中断码的值为通码的值+0x80.
  */
 #define SIZE ((sizeof arrow_code)/(sizeof arrow_code[0]))
+
+#define ENTER_CODE 28
+
 static int arrow_code[] = {
     72, 80, 75, 77//up, down, left, right
 };
 /* 对应键按下的标志位 */
 static bool arrow_pressed[SIZE];
+
+static bool enterPressed = FALSE;
 
 unsigned int arrow_size() {
     return SIZE;
@@ -23,6 +28,10 @@ press_dir(int scan_code) {
 			arrow_pressed[i] = TRUE;
 		}
 	}
+    if (scan_code == ENTER_CODE) {
+        enterPressed = TRUE;
+    }
+
 }
 
 void
@@ -49,6 +58,18 @@ void
 maze_key_event(int code) {
 	key_code = code;
 	press_dir(code);
+}
+
+
+bool againOr() {
+    if (enterPressed) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+void release_enter() {
+    enterPressed = TRUE;
 }
 
 #undef SIZE
