@@ -1,7 +1,7 @@
 #ifndef __SCR_H__
 #define __SCR_H__
 
-#include "wall.h"
+#include "maze_const.h"
 
 int get_src_x();
 int get_src_y();

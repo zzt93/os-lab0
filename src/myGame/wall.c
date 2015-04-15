@@ -9,13 +9,14 @@ bool has_wall(Dir d, int x, int y) {
     int tmpy = y;
     assume_move(d, &tmpx, &tmpy);
     int i = (x * MAZE_W + y)*MOVE_WIDTH ;
+    i += (TO_GRID_CEN * MAZE_W + MAZE_H);
     // TODO temprorily use HEAD_H/_W /4
     switch(d) {
         case UP:
-            i += (HEAD_H / 4 * MAZE_W);
+            i -= (HEAD_H / 4 * MAZE_W);
             break;
         case DOWN:
-            i -= (HEAD_H / 4 * MAZE_W);
+            i += (HEAD_H / 4 * MAZE_W);
             break;
         case LEFT:
             i -= (HEAD_W / 4);

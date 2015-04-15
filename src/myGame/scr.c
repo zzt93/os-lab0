@@ -7,6 +7,10 @@ static const int y_limit_s = YLS;
 static const int x_limit_l = (GRIDS_X - XLS);
 static const int y_limit_l = (GRIDS_Y - YLS);
 
+/*
+  scr_x: x--the position of middle of screen
+  scr_y: y--as above
+ */
 static int scr_x = SCR_X;
 static int scr_y = SCR_Y;
 
@@ -50,5 +54,6 @@ int to_start() {
     check(&scr_y, y_limit_s, y_limit_l);
 
     int res = ((scr_x - x_limit_s)*MAZE_W + (scr_y - y_limit_s))*MOVE_WIDTH;
+    //res += (TO_GRID_CEN * MAZE_W + TO_GRID_CEN);
     return res;
 }
