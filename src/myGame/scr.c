@@ -34,10 +34,10 @@ void set_src_y(int y) {
 
 void check(int* x, int x_l_s, int x_l_l) {
     if (*x < x_l_s) {
-        printk("parameter is :%d\n larger than %d", x, x_l_s);
+        printk("parameter is :%d larger than %d\n", *x, x_l_s);
         *x = x_l_s;
     } else if (*x > x_l_l) {
-        printk("parameter is :%d\n larger than %d", x, x_l_l);
+        printk("parameter is :%d larger than %d\n", *x, x_l_l);
         *x = x_l_l;
     }
 

@@ -5,7 +5,7 @@
 #include "myGame/character.h"
 #include "x86/x86.h"
 
-static int all = 90;//90 second
+static int all = 100;//90 second
 
 void update_timer() {
     // counterdown timer

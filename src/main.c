@@ -22,6 +22,7 @@ game_init(void) {
     bool again = TRUE;
     while (again) {
         maze_loop();
+        wait_for_interrupt();// doesn't work for timer_event
         again = againOr();
     }
 	assert(0);

@@ -3,13 +3,13 @@
 
 #include "device/video.h"
 
-#define MOVE_WIDTH 10
+#define MOVE_WIDTH 8
 // your coordinates relative to maze
-#define INI_X 49
+#define INI_X 61
 #define INI_Y 1
 // screen index relative to maze
-#define SCR_X 49
-#define SCR_Y 16
+#define SCR_X 61
+#define SCR_Y 20
 // your size of move
 #define GRIDS_X (MAZE_H/MOVE_WIDTH)
 #define GRIDS_Y (MAZE_W/MOVE_WIDTH)
@@ -18,6 +18,6 @@
 #define SCR_INDEX_Y (((MAZE_W * 2) / SCR_WIDTH))
 */
 
-#define AIM_X 39
-#define AIM_Y 100
+#define AIM_X 49
+#define AIM_Y 125
 #endif /* __MAZE_CONST_H__ */

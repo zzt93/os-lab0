@@ -28,8 +28,8 @@ void draw_string(const char*, int, int, int);
 bool isWhite(int x);
 
 // pixels of picture
-#define HEAD_H 30
-#define HEAD_W 35
+#define HEAD_H 21
+#define HEAD_W 23
 #define MAZE_H 1024
 #define MAZE_W 1024
 

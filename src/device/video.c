@@ -5,7 +5,7 @@
 #include "device/palette.h"
 
 #include "myGame/scr.h"
-#include "myGame/end_bmp"
+#include "myGame/end3_bmp"
 
 
 /* 绘制屏幕的帧缓冲实现。
@@ -37,7 +37,7 @@ prepare_buffer(void) {
 #endif
 	vmem = vbuf;//in order make draw_string write to buffer
 	//memset(vbuf, 0, SCR_SIZE);// this line make it all blank
-    draw_picture(end_bmp + to_start(), MAZE_W, MAZE_H, 0);
+    draw_picture(end3_bmp + to_start(), MAZE_W, MAZE_H, 0);
 }
 
 void
@@ -104,7 +104,7 @@ void draw_picture(unsigned char *s, int w, int h, int des_off) {
 
 
 bool isWhite(int i) {
-    int in = end_bmp[i];
+    int in = end3_bmp[i];
     P color = getColor(in);
     if (color.r >= 0xd0 && color.g >= 0xd0 && color.b >= 0xd0) {
         return TRUE;

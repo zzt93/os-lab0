@@ -95,5 +95,6 @@ maze_loop(void) {
 		}
 	}
     draw_end(res);
-    release_enter();
+    printk("ending\n");
+    //release_enter();
 }
