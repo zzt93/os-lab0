@@ -6,6 +6,16 @@
 #include "device/palette.h"
 #include "myGame/myGame.h"
 
+#include "myGame/maze_again.h"
+
+void reinit() {
+    key_reinit();
+    tick_reinit();
+    char_reinit();
+    scr_reinit();
+    all_reinit();
+}
+
 void
 game_init(void) {
 	init_serial();
@@ -22,8 +32,11 @@ game_init(void) {
     bool again = TRUE;
     while (again) {
         maze_loop();
-        wait_for_interrupt();// doesn't work for timer_event
+        //wait_for_interrupt();// doesn't work for timer_event
         again = againOr();
+        //printk("out of again\n");
+        reinit();
     }
 	assert(0);
 }
+

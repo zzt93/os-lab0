@@ -22,6 +22,11 @@ int get_src_y() {
     return scr_y;
 }
 
+void scr_reinit() {
+    scr_x = SCR_X;
+    scr_y = SCR_Y;
+}
+
 void set_src_x(int x) {
 	disable_interrupt();
     scr_x = x;
@@ -38,7 +43,7 @@ void set_src_y(int y) {
 
 void check(int* x, int x_l_s, int x_l_l) {
     if (*x < x_l_s) {
-        printk("parameter is :%d larger than %d\n", *x, x_l_s);
+        printk("parameter is :%d smaller than %d\n", *x, x_l_s);
         *x = x_l_s;
     } else if (*x > x_l_l) {
         printk("parameter is :%d larger than %d\n", *x, x_l_l);

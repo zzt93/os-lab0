@@ -5,7 +5,9 @@
 #include "myGame/character.h"
 #include "x86/x86.h"
 
-static int all = 100;//90 second
+#define ALL_TIME 5
+
+static int all = ALL_TIME;//90 second
 
 void update_timer() {
     // counterdown timer
@@ -14,6 +16,10 @@ void update_timer() {
 
 int get_remaining() {
     return all;
+}
+
+void all_reinit() {
+    all = ALL_TIME;
 }
 
 void
@@ -40,14 +46,25 @@ update_you() {
 	return FALSE;
 }
 
+#define RANGE 3
+static bool inRange(int x, int y) {
+    if (x < AIM_X - RANGE || x > AIM_X + 4) {
+        if (y >= AIM_Y - RANGE) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 Result winOrLose() {
     if (all <= 0) {
         return LOSE;
     }
     int x = getx();
     int y = gety();
-    if (x == AIM_X && y >= AIM_Y) {
+    if (inRange(x, y)) {
         return WIN;
     }
     return LET;
 }
+

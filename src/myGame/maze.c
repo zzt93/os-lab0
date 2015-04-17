@@ -12,6 +12,10 @@ void maze_timer_event() {
     tick++;
 }
 
+void tick_reinit() {
+    tick = 0;
+}
+
 static int real_fps;
 void
 set_mfps(int value) {

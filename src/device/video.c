@@ -111,3 +111,25 @@ bool isWhite(int i) {
     }
     return FALSE;
 }
+
+void set_color(int des_off, unsigned char color, int len) {
+    memset(vbuf + des_off, color, len);
+}
+
+
+/*
+  args: {now: the offset relative to the start of screen}
+  return value:
+  Usage: draw the 9 pixels
+*/
+
+#define R 3
+void draw_point(int now, unsigned char color) {
+    int first = now - SCR_WIDTH - 1;
+    int last = now + SCR_WIDTH + 1;
+    assert(first >= 0 && last < SCR_SIZE);
+    unsigned int i;
+    for (i = 0; i < R; ++i) {
+        memset(vbuf + i*SCR_WIDTH, color, R);
+    }
+}

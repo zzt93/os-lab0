@@ -2,7 +2,6 @@
 #include "common.h"
 #include "device/video.h"
 
-bool wall[GRIDS_X][GRIDS_Y];
 
 bool has_wall(Dir d, int x, int y) {
     int tmpx = x;

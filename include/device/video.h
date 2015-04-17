@@ -26,12 +26,15 @@ void draw_picture(unsigned char*s, int w, int h, int des_off);
 void draw_string(const char*, int, int, int);
 
 bool isWhite(int x);
-
+void set_color(int des_off, unsigned char, int len);
+void draw_point(int now, unsigned char color);
 // pixels of picture
 #define HEAD_H 21
 #define HEAD_W 23
 #define MAZE_H 1024
 #define MAZE_W 1024
 
+#define WHITE 0
+#define RED 8
 
 #endif

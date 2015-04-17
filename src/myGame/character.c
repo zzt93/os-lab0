@@ -17,6 +17,17 @@ int gety() {
     return char_y;
 }
 
+void char_reinit() {
+    unsigned int i = 0;
+    for (; i < GRIDS_X; i++) {
+        unsigned int j = 0;
+        for (; j < GRIDS_Y; j++) {
+            trace[i][j] = 0;
+        }
+    }
+    char_x = INI_X;
+    char_y = INI_Y;
+}
 Dir* surrond() {
     static Dir res[5];
     int i = 0;
@@ -70,6 +81,18 @@ void update(Dir d) {
     set_src_y(char_y);
 }
 
+int offset_screen(int cx, int cy) {
+    int x = cx - (get_src_x() - XLS);
+    int y = cy - (get_src_y() - YLS);
+    if (x > 2 * XLS || y > 2 * YLS) {
+        return -1;
+    }
+    int res = (x * SCR_WIDTH + y) * MOVE_WIDTH;
+    //res += (TO_GRID_CEN * SCR_WIDTH + TO_GRID_CEN);
+    //printk("offset is %d\n", res);
+    return res;
+}
+
 /*
   return: the position to start drawing head bmp
  */
@@ -77,10 +100,6 @@ int off_to_screen() {
     check(&char_x, 1, GRIDS_X-1);
     check(&char_y, 1, GRIDS_Y-1);
 
-    int x = char_x - (get_src_x() - XLS);
-    int y = char_y - (get_src_y() - YLS);
-    int res = (x * SCR_WIDTH + y) * MOVE_WIDTH;
-    //res += (TO_GRID_CEN * SCR_WIDTH + TO_GRID_CEN);
-    //printk("offset is %d\n", res);
-    return res;
+    return offset_screen(char_x, char_y);
 }
+
