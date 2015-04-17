@@ -5,7 +5,7 @@
 #include "myGame/character.h"
 #include "x86/x86.h"
 
-#define ALL_TIME 5
+#define ALL_TIME 151
 
 static int all = ALL_TIME;//90 second
 

@@ -5,7 +5,7 @@
 
 #define MOVE_WIDTH 8
 // your coordinates relative to maze
-#define INI_X (490 / MOVE_WIDTH)
+#define INI_X (500 / MOVE_WIDTH)
 #define INI_Y (10 / MOVE_WIDTH)
 // screen index relative to maze
 #define SCR_X INI_X

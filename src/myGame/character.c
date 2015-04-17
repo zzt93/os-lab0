@@ -84,7 +84,7 @@ void update(Dir d) {
 int offset_screen(int cx, int cy) {
     int x = cx - (get_src_x() - XLS);
     int y = cy - (get_src_y() - YLS);
-    if (x > 2 * XLS || y > 2 * YLS) {
+    if (x >= 2 * XLS - 1 || y >= 2 * YLS - 1 || x <= 0 || y <= 0) {
         return -1;
     }
     int res = (x * SCR_WIDTH + y) * MOVE_WIDTH;

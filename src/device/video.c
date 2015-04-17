@@ -127,9 +127,11 @@ void set_color(int des_off, unsigned char color, int len) {
 void draw_point(int now, unsigned char color) {
     int first = now - SCR_WIDTH - 1;
     int last = now + SCR_WIDTH + 1;
+    unsigned char * buf = vbuf + now;
+    //printk("first %d last %d\n", first, last);
     assert(first >= 0 && last < SCR_SIZE);
     unsigned int i;
     for (i = 0; i < R; ++i) {
-        memset(vbuf + i*SCR_WIDTH, color, R);
+        memset(buf + i*SCR_WIDTH, color, R);
     }
 }

@@ -43,15 +43,15 @@ void draw_line(int sx, int sy, int ex, int ey) {
     int off = offset_screen(sx, sy);
     assert(off < SCR_SIZE);
     unsigned int i;
-    int gapx = rate * MOVE_WIDTH;
-    int gapy = rate * MOVE_WIDTH;
+    int gapx = (sx > ex) ? -1 : 1;
+    int gapy = rate * gapx;
     for (i = 0; ; ++i) {
-        printk("draw_line loop\n");
         off = offset_screen(sx + i * gapx, sy + i * gapy);
+        //printk("draw_line loop: %d\n", off);
         if (off == -1) {
             return;
         }
-        //draw_point(off, RED);
+        draw_point(off, RED);
     }
 }
 
@@ -67,14 +67,14 @@ redraw_timerMonsterAndYou() {
 	prepare_buffer(); /* 准备缓冲区 */
 
     /*
-      the coordinates of draw_string is pure
+      the coordinates of draw_string is absolute
     */
 	draw_string(itoa(get_mfps()), 0, 0, 14);
 	draw_string("FPS", 0, strlen(itoa(get_mfps())) * 8, 14);
     // draw the counterdown timer
     draw_string(itoa(get_remaining()), 0, SCR_WIDTH/2, 0x8);
     draw_picture(head_bmp, HEAD_W, HEAD_H, off_to_screen());
-    //draw_line(getx(), gety(), AIM_X, AIM_Y);
+    draw_line(getx(), gety(), AIM_X, AIM_Y);
 
 	display_buffer(); /* 绘制缓冲区 */
 }
