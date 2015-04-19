@@ -46,10 +46,11 @@ update_you() {
 	return FALSE;
 }
 
-#define RANGE 3
+#define RANGE 1
 static bool inRange(int x, int y) {
-    if (x < AIM_X - RANGE || x > AIM_X + 4) {
-        if (y >= AIM_Y - RANGE) {
+    if (y >= AIM_Y - RANGE) {
+        printk("x %d, y %d\n", x, y);
+        if (x >= AIM_X - RANGE && x <= AIM_X + RANGE) {
             return TRUE;
         }
     }

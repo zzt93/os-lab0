@@ -73,15 +73,15 @@ void assume_move(Dir d, int *x, int *y) {
 
 void update(Dir d) {
     assume_move(d, &char_x, &char_y);
-   //update trace
-    printk("dir is %d\n", d);
+    //update trace
+    //printk("dir is %d\n", d);
     trace[char_x][char_y]++;
     //update screen
     set_src_x(char_x);
     set_src_y(char_y);
 }
 
-int offset_screen(int cx, int cy) {
+int offset_screen(double cx, double cy) {
     int x = cx - (get_src_x() - XLS);
     int y = cy - (get_src_y() - YLS);
     if (x >= 2 * XLS - 1 || y >= 2 * YLS - 1 || x <= 0 || y <= 0) {

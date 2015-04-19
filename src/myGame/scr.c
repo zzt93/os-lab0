@@ -4,7 +4,7 @@
 
 static const int x_limit_s = XLS;
 static const int y_limit_s = YLS;
-static const int x_limit_l = (GRIDS_X - XLS);
+static const int x_limit_l = (GRIDS_X - XLS - 1);
 static const int y_limit_l = (GRIDS_Y - YLS);
 
 /*

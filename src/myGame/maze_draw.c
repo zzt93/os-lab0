@@ -22,7 +22,7 @@ void draw_end(Result res) {
     }
 
     if (res == WIN) {
-        static const char * win = "You WIN";
+        static const char * win = "You WIN!";
         draw_string(win, SCR_HEIGHT/2, SCR_WIDTH/2 - strlen(win)/2 * 8, 0x8);
     } else {
         assert (res == LOSE);
@@ -43,8 +43,8 @@ void draw_line(int sx, int sy, int ex, int ey) {
     int off = offset_screen(sx, sy);
     assert(off < SCR_SIZE);
     unsigned int i;
-    int gapx = (sx > ex) ? -1 : 1;
-    int gapy = rate * gapx;
+    double gapx = (sx > ex) ? -1 : 1;
+    double gapy = rate * gapx;
     for (i = 0; ; ++i) {
         off = offset_screen(sx + i * gapx, sy + i * gapy);
         //printk("draw_line loop: %d\n", off);

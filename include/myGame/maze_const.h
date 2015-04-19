@@ -18,7 +18,7 @@
 #define SCR_INDEX_Y (((MAZE_W * 2) / SCR_WIDTH))
 */
 
-#define AIM_X (379 / MOVE_WIDTH)
+#define AIM_X (384 / MOVE_WIDTH)
 #define AIM_Y (1000 / MOVE_WIDTH)
 
 #define TO_GRID_CEN MOVE_WIDTH/2

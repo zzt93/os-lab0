@@ -11,6 +11,6 @@ int gety();
 
 void assume_move(Dir, int*, int*);
 int off_to_screen();
-int offset_screen(int x, int y);
+int offset_screen(double x, double y);
 
 #endif /* __CHARACTER_H__ */
